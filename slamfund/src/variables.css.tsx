@@ -32,6 +32,7 @@ export default createGlobalStyle`
         --font-color-blue: #0a58ff;
 
         --color-white: white;
+        --color-black-lightest: rgba(0,0,0,0.05);
         --color-black-lighter: rgba(0,0,0,0.25);
         --color-black-light: rgba(0,0,0,0.5);
         --color-blue: #0a58ff;

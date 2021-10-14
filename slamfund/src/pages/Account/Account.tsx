@@ -1,8 +1,46 @@
-import React from "react";
+import { AxiosResponse } from "axios";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
+import { authApi } from "../../apis/config";
+import useAuth from "../../context/user/useAuth";
 import { CardBorder, Margin } from "../../layout/Layout";
-
+interface IUserInfo {
+  username: string;
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  email: string;
+  postalCode: string;
+  country: string;
+  address: string;
+}
 export default function Account() {
+  const { user, loading, error, login, signUp, logout } = useAuth();
+  const [userInfo, setUserInfo] = useState<IUserInfo>({
+    username: "login required",
+    firstName: "login required",
+    lastName: "login required",
+    birthday: "login required",
+    email: "login required",
+    postalCode: "login required",
+    country: "login required",
+    address: "login required",
+  });
+  const history = useHistory();
+  useEffect(() => {
+    const getUser = async () => {
+      if (user) {
+        const res: AxiosResponse<IUserInfo> = await authApi.get("/user", {
+          params: { userId: user ? user.userId : -1 },
+        });
+        setUserInfo(res.data);
+      } else {
+        history.push("/login");
+      }
+    };
+    getUser();
+  }, []);
   return (
     <Container>
       <CardBorder>
@@ -13,9 +51,22 @@ export default function Account() {
               <Title>Basic Information</Title>
               <Edit>edit</Edit>
             </TitleContainer>
-            <InfoContainerCard title={"name"} text={"John Smith"} />
-            <InfoContainerCard title={"birthday"} text={"1999/02/02"} />
-            <InfoContainerCard title={"email"} text={"johnsmit@gmail.com"} />
+            <InfoContainerCard title={"username"} text={userInfo.username} />
+            <InfoContainerCard
+              title={"name"}
+              text={userInfo.firstName + " " + userInfo.lastName}
+            />
+            <InfoContainerCard title={"birthday"} text={userInfo.birthday} />
+            <InfoContainerCard
+              title={"email"}
+              text={
+                userInfo.email.length > 16
+                  ? userInfo.email.slice(0, 15) +
+                    " " +
+                    userInfo.email.slice(15, userInfo.email.length)
+                  : userInfo.email
+              }
+            />
           </Card>
         </Margin>
       </CardBorder>
@@ -27,15 +78,16 @@ export default function Account() {
               <Title>Billing Address</Title>
               <Edit>edit</Edit>
             </TitleContainer>
-            <InfoContainerCard title={"name"} text={"John Smith"} />
-            <InfoContainerCard title={"postal code"} text={"22222-22"} />
-            <InfoContainerCard title={"country"} text={"US"} />
-            <InfoContainerCard title={"state"} text={"Arizona"} />
             <InfoContainerCard
-              title={"address"}
-              text={"placeholder street 1-2020"}
+              title={"name"}
+              text={userInfo.firstName + " " + userInfo.lastName}
             />
-            <InfoContainerCard title={"billing account"} text={"******-002"} />
+            <InfoContainerCard
+              title={"postal code"}
+              text={userInfo.postalCode}
+            />
+            <InfoContainerCard title={"country"} text={userInfo.country} />
+            <InfoContainerCard title={"address"} text={userInfo.address} />
           </Card>
         </Margin>
       </CardBorder>
@@ -52,8 +104,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-  margin: var(--padding-p4) 0 var(--padding-p4) 0;
-  max-width: 100vw;
+  padding: var(--padding-p4) 0 var(--padding-p4) 0;
   min-height: 35vh;
   background-color: var(--color-white);
   display: grid;

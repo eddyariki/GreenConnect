@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import styled, { css, keyframes } from "styled-components";
+import useAuth from "../context/user/useAuth";
 import { Margin } from "./Layout";
 
 export default function Header() {
+  const { user, loading, error, login, signUp, logout } = useAuth();
   const [menu, setMenu] = useState<boolean>(false);
   const history = useHistory();
   const handleClick = () => {
@@ -17,6 +19,7 @@ export default function Header() {
             <Logo>Logo Here</Logo>
           </LogoContainer>
           <MenuContainer>
+            {user ? <Logout>logout</Logout> : null}
             <HamburgerContainer onClick={handleClick}>
               <Hamburger />
               <Hamburger />
@@ -74,9 +77,17 @@ const Logo = styled.div``;
 const MenuContainer = styled.div`
   grid-column: 3/4;
   justify-self: end;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: var(--padding-p2);
 `;
-
+const Logout = styled.div`
+  text-decoration: underline;
+  grid-column: 1/2;
+  align-self: center;
+`;
 const HamburgerContainer = styled.div`
+  grid-column: 2/4;
   display: grid;
   align-self: center;
   justify-self: center;

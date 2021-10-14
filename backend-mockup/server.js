@@ -76,7 +76,7 @@ app.post("/users/login", async (req, res) => {
   });
 });
 app.post("/users/signup", async (req, res) => {
-  console.log("signiing up", req.body);
+  console.log("signing up", req.body);
   const accessToken = await signAccessToken(1);
   const refreshToken = await signRefreshToken(1);
 
@@ -91,6 +91,20 @@ app.post("/users/signup", async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     accessToken: accessToken,
+  });
+});
+
+app.get("/users/user", (req, res) => {
+  console.log("user", req.params);
+  res.json({
+    username: "mockup",
+    firstName: "From",
+    lastName: "Mockup",
+    birthday: "00-00-0000",
+    email: "frommockup@mockup.com",
+    postalCode: "000-0000",
+    country: "Mockup",
+    address: "Mockup, Mockup City, Mockup Street, 1-20-2",
   });
 });
 app.post("/users/ping", (req, res) => {

@@ -12,4 +12,10 @@ export const CardBorder = styled.div`
   border-bottom: solid var(--color-black-lighter) 1px;
   border-left: none;
   border-right: none;
+  max-width: 100vw;
+`;
+
+export const Spacer = styled.div`
+  max-width: 100vw;
+  height: var(--padding-p4);
 `;
