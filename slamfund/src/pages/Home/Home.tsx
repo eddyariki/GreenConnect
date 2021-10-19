@@ -4,9 +4,12 @@ import { authApi } from "../../apis/config";
 import { Margin } from "../../layout/Layout";
 
 export default function Home() {
+  const handleClick = async () => {
+    const res = await authApi.post("ping");
+  };
   return (
     <Margin>
-      <Container>tets</Container>
+      <Container onClick={handleClick}>tets</Container>
     </Margin>
   );
 }

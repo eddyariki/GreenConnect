@@ -8,7 +8,7 @@ const port = 4040;
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://192.168.11.13:3000",
     credentials: true,
     allowedHeaders: [
       "content-type",
@@ -25,7 +25,7 @@ const signAccessToken = (userId) => {
     const secret = "mysecret";
     const options = {
       expiresIn: "60s",
-      issuer: "localhost",
+      issuer: " 192.168.11.13",
       audience: toString(userId),
     };
     JWT.sign(payload, secret, options, (err, token) => {
@@ -44,7 +44,7 @@ const signRefreshToken = (userId) => {
     const secret = "myrefreshsecret";
     const options = {
       expiresIn: "7d",
-      issuer: "localhost",
+      issuer: " 192.168.11.13",
       audience: toString(userId),
     };
     JWT.sign(payload, secret, options, (err, token) => {
@@ -110,7 +110,7 @@ app.get("/users/user", (req, res) => {
 app.post("/users/ping", (req, res) => {
   console.log("BODY", req.body);
   console.log("HEADERS", req.headers);
-  console.log("COOKIES", req.cookies["x-refresh-token"]);
+  console.log("COOKIES", req.cookies);
   res.json({ msg: "pong" });
 });
 

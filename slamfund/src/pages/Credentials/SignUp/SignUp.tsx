@@ -77,7 +77,7 @@ export default function SignUp() {
       {loading ? (
         <Loading />
       ) : (
-        <Form>
+        <Form autoComplete="off">
           <Container>
             <ReturnContainer>
               <ReturnButton>back</ReturnButton>
@@ -111,9 +111,9 @@ export default function SignUp() {
                   <>confirm email</>
                 )
               }
-              name="email"
+              name="confirmEmail"
               type="text"
-              value={credentials.email}
+              value={credentials.confirmEmail}
               placeholder="email"
               onChange={handleInput}
             />
@@ -136,9 +136,9 @@ export default function SignUp() {
                   <>confirm password</>
                 )
               }
-              name="password"
+              name="confirmPassword"
               type="password"
-              value={credentials.password}
+              value={credentials.confirmPassword}
               placeholder="password"
               onChange={handleInput}
             />
