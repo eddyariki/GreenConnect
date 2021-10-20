@@ -6,6 +6,7 @@ import ResetForm from "./pages/Credentials/ResetForm/ResetForm";
 import SignedUp from "./pages/Credentials/SignedUp/SignedUp";
 import Account from "./pages/Account/Account";
 import Earnings from "./pages/Earnings/Earnings";
+import Coders from "./pages/Coders/Coders";
 
 export const routes = [
   {
@@ -46,6 +47,11 @@ export const routes = [
   {
     component: Earnings,
     path: "/analysis",
+    protected: true,
+  },
+  {
+    component: Coders,
+    path: "/coders",
     protected: true,
   },
 ];

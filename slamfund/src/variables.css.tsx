@@ -7,6 +7,7 @@ export default createGlobalStyle`
         --padding-p2: 12px;
         --padding-p3: 16px;
         --padding-p4: 24px;
+        --padding-p5: 32px;
         --padding-p5_5: 38px;
         --padding-p6: 48px;
         --padding-p7: 64px;

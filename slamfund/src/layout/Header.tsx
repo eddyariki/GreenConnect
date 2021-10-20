@@ -31,6 +31,9 @@ export default function Header() {
           <DropDownMenuContainer onClick={handleClick}>
             <LinkContainer>
               <CustomLink onClick={() => history.push("/")}>home</CustomLink>
+              <CustomLink onClick={() => history.push("/coders")}>
+                coders
+              </CustomLink>
               <CustomLink onClick={() => history.push("/account")}>
                 account
               </CustomLink>

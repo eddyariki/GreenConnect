@@ -93,14 +93,14 @@ const ChartContainer = styled.div`
   grid-template-columns: 1fr;
   grid-row-gap: var(--padding-p2);
 `;
-const DropDown = styled.select`
+export const DropDown = styled.select`
   outline: none;
   border: solid 1px var(--color-black-light);
   height: var(--padding-p4);
   border-radius: var(--padding-p0);
   width: fit-content;
 `;
-const Option = styled.option``;
+export const Option = styled.option``;
 
 const AnalysisBackground = styled.div`
   background-color: var(--color-black-lightest);

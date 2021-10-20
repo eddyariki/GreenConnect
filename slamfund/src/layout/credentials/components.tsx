@@ -40,11 +40,18 @@ export const ContentP4 = styled.div`
   font-size: var(--font-size-p4);
   font-weight: bold;
 `;
+export const ContentP4Light = styled.div`
+  font-size: var(--font-size-p4);
+`;
 export const ContentP3 = styled.div`
   font-size: var(--font-size-p3);
   color: var(--font-color-light);
 `;
-
+export const ContentP3Bold = styled.div`
+  font-size: var(--font-size-p3);
+  color: var(--font-color-light);
+  font-weight: bold;
+`;
 export const ContentP3Light = styled.div`
   font-size: var(--font-size-p2);
   font-weight: lighter;
