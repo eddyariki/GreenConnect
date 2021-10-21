@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import styled, { css, keyframes } from "styled-components";
 import useAuth from "../context/user/useAuth";
 import { Margin } from "./Layout";
-
+import LogoSrc from "../assets/logo.png";
 export default function Header() {
   const { user, loading, error, login, signUp, logout } = useAuth();
   const [menu, setMenu] = useState<boolean>(false);
@@ -16,7 +16,9 @@ export default function Header() {
       <Margin style={{ alignSelf: "center" }}>
         <SubContainer>
           <LogoContainer>
-            <Logo>Logo Here</Logo>
+            <Logo>
+              <LogoImage src={LogoSrc}></LogoImage>
+            </Logo>
           </LogoContainer>
           <MenuContainer>
             {user ? <Logout>logout</Logout> : null}
@@ -32,7 +34,7 @@ export default function Header() {
             <LinkContainer>
               <CustomLink onClick={() => history.push("/")}>home</CustomLink>
               <CustomLink onClick={() => history.push("/coders")}>
-                coders
+                modelers
               </CustomLink>
               <CustomLink onClick={() => history.push("/account")}>
                 account
@@ -75,7 +77,13 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.div``;
+const Logo = styled.div`
+  height: var(--padding-p7);
+`;
+
+const LogoImage = styled.img`
+  height: var(--padding-p7);
+`;
 
 const MenuContainer = styled.div`
   grid-column: 3/4;
@@ -125,6 +133,7 @@ const DropDownMenuContainer = styled.div`
   width: 100vw;
   display: grid;
   align-items: center;
+  z-index: 30000;
 `;
 
 const LinkContainer = styled.div`

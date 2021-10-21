@@ -3,58 +3,8 @@ import styled from "styled-components";
 import { authApi } from "../../apis/config";
 import { ContentP4 } from "../../layout/credentials/components";
 import { CardBorder, Margin } from "../../layout/Layout";
-import TeamAImg from "../../assets/gsw.png";
-import TeamBImg from "../../assets/lal.png";
 
-const mockUpList = [
-  {
-    teamA: {
-      name: "Lakers",
-      logo: "test",
-      score: 110,
-    },
-    teamB: {
-      name: "Warriors",
-      logo: "test",
-      score: 110,
-    },
-    bet: {
-      type: "spread",
-    },
-  },
-
-  {
-    teamA: {
-      name: "Lakers",
-      logo: "test",
-      score: 110,
-    },
-    teamB: {
-      name: "Warriors",
-      logo: "test",
-      score: 110,
-    },
-    bet: {
-      type: "spread",
-    },
-  },
-
-  {
-    teamA: {
-      name: "Lakers",
-      logo: "test",
-      score: 110,
-    },
-    teamB: {
-      name: "Warriors",
-      logo: "test",
-      score: 110,
-    },
-    bet: {
-      type: "spread",
-    },
-  },
-];
+import { mockUpList } from "./mockup";
 
 export default function Home() {
   const handleClick = async () => {
@@ -73,12 +23,12 @@ export default function Home() {
             <Margin>
               <MarginTop>
                 <Team row="1/2">
-                  <TeamIcon src={TeamAImg} />
+                  <TeamIcon src={item.teamA.image} />
                   <TeamName>{item.teamA.name}</TeamName>
                   <TeamScore>{item.teamA.score}</TeamScore>
                 </Team>
                 <Team row="2/3">
-                  <TeamIcon src={TeamBImg} />
+                  <TeamIcon src={item.teamB.image} />
                   <TeamName>{item.teamB.name}</TeamName>
                   <TeamScore>{item.teamB.score}</TeamScore>
                 </Team>

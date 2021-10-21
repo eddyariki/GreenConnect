@@ -38,8 +38,10 @@ export default createGlobalStyle`
         --color-black-lighter: rgba(0,0,0,0.25);
         --color-black-light: rgba(0,0,0,0.5);
         --color-blue: #0a58ff;
+        --color-blue-light: #ccdcff;
+        /* --color-blue: #709eff; */
         --color-background: #fafdff;
-
+        --color-orange:#ffc72e;
         --shadow-s2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     }
 `;
