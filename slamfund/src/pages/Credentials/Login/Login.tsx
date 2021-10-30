@@ -48,8 +48,8 @@ export default function Login() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     login(credentials.email, credentials.password);
-    const res = await authApi.post("/ping");
-    console.log(res);
+    // const res = await authApi.post("/ping");
+    // console.log(res);
   };
 
   const handleToggle = () => {
@@ -71,7 +71,7 @@ export default function Login() {
             </ContentContainer>
             <InputContainer>
               <Label>
-                username
+                email
                 <Input
                   type="text"
                   name="email"

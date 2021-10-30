@@ -7,12 +7,15 @@ import SignedUp from "./pages/Credentials/SignedUp/SignedUp";
 import Account from "./pages/Account/Account";
 import Earnings from "./pages/Earnings/Earnings";
 import Coders from "./pages/Coders/Coders";
+import Modelers from "./pages/Coders/Modeler";
+import Modeler from "./pages/Coders/Modeler";
+import Portfolio from "./pages/Portfolio/Portfolio";
 
 export const routes = [
   {
     component: Home,
     path: "/",
-    protected: false,
+    protected: true,
   },
   {
     component: Login,
@@ -54,8 +57,22 @@ export const routes = [
     path: "/coders",
     protected: true,
   },
+  {
+    component: Modeler,
+    path: "/modeler",
+    protected: true,
+  },
+  {
+    component: Portfolio,
+    path: "/portfolio",
+    protected: true,
+  },
 ];
 
-export const protectedRoutes = routes.map((route) =>
-  route.protected ? route.path : null
-);
+export const protectedRoutes = routes.map((route) => {
+  if (route.protected) {
+    return route.path;
+  } else {
+    return null;
+  }
+});

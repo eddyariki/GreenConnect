@@ -4,7 +4,7 @@ export const Margin = styled.div`
   padding: 0 var(--padding-p4) 0 var(--padding-p4);
   height: auto;
   width: auto;
-  background-color: var(--color-white);
+  /* background-color: var(--color-white); */
 `;
 
 export const CardBorder = styled.div`
@@ -13,6 +13,7 @@ export const CardBorder = styled.div`
   border-left: none;
   border-right: none;
   max-width: 100vw;
+  background-color: var(--color-white);
 `;
 
 export const Spacer = styled.div`

@@ -66,19 +66,22 @@ const AllocationCard: React.FC<IAllocationCardProps> = (props) => {
               </MarginTop>
             </Margin>
           </CardBorder>
-
-          <Button
-            action={true}
-            style={{
-              backgroundColor: "var(--color-orange)",
-              color: "var(--font-color)",
-            }}
-          >
-            allocate
-          </Button>
-          <Button action={false} onClick={props.toggleAllocateMenu}>
-            cancel
-          </Button>
+          <Margin>
+            <ButtonsContainer>
+              <Button
+                action={true}
+                style={{
+                  backgroundColor: "var(--color-orange)",
+                  color: "var(--font-color)",
+                }}
+              >
+                allocate
+              </Button>
+              <Button action={false} onClick={props.toggleAllocateMenu}>
+                cancel
+              </Button>
+            </ButtonsContainer>
+          </Margin>
         </PopupContainer>
       </MarginTop>
     </Container>
@@ -168,6 +171,11 @@ const RemoveAll = styled.div`
   color: var(--font-color-red);
   justify-items: center;
   align-items: center;
+`;
+
+const ButtonsContainer = styled.div`
+  display: grid;
+  row-gap: var(--padding-p4);
 `;
 
 export default AllocationCard;

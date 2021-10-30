@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import {
   Button,
@@ -9,6 +10,7 @@ import {
 import { CardBorder, Margin } from "../../layout/Layout";
 import { DropDown, Option } from "../Earnings/Earnings";
 import AllocationCard from "./AllocationCard";
+import { coders } from "./mockup";
 
 export type Coder = {
   name: string;
@@ -18,40 +20,6 @@ export type Coder = {
   age: number;
   userId: number;
 };
-const coders: Coder[] = [
-  {
-    name: "Modeler A",
-    acc: 10.2,
-    users: 233,
-    fees: 1.22,
-    age: 333,
-    userId: 0,
-  },
-  {
-    name: "Modeler B",
-    acc: 50.5,
-    users: 2133,
-    fees: 1.22,
-    age: 343,
-    userId: 2,
-  },
-  {
-    name: "Modeler C",
-    acc: 66.63,
-    users: 1233,
-    fees: 8.2,
-    age: 223,
-    userId: 3,
-  },
-  {
-    name: "Modeler G",
-    acc: 78.0,
-    users: 2233,
-    fees: 1.02,
-    age: 33,
-    userId: 4,
-  },
-];
 
 type Filter = {
   label: string;
@@ -257,6 +225,10 @@ type CoderCardType = {
   props: ICoderCard;
 };
 const CoderCard: React.FC<CoderCardType> = ({ props }) => {
+  const history = useHistory();
+  const handleRedirect = (userId: number) => {
+    history.push(`/modeler?userId=${userId}`);
+  };
   return (
     <CardBorder
       style={
@@ -285,7 +257,7 @@ const CoderCard: React.FC<CoderCardType> = ({ props }) => {
             </Stats>
           </StatsContainer>
           <VR />
-          <Link>view profile</Link>
+          <Link onClick={() => handleRedirect(props.userId)}>view profile</Link>
         </CardContainer>
       </Margin>
     </CardBorder>
@@ -437,6 +409,7 @@ const AllocationButtonContainer = styled.div`
   border-radius: var(--padding-p6);
   background-color: var(--color-white);
   padding: var(--padding-p2);
+  z-index: 200000;
 `;
 
 const Info = styled.div``;

@@ -17,9 +17,9 @@ export default function Home() {
       <ContentP4>
         <Margin>Current Bets</Margin>
       </ContentP4>
-      {mockUpList.map((item) => {
+      {mockUpList.map((item, idx) => {
         return (
-          <CardBorder>
+          <CardBorder key={idx}>
             <Margin>
               <MarginTop>
                 <Team row="1/2">

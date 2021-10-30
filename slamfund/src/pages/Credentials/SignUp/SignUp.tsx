@@ -65,8 +65,6 @@ export default function SignUp() {
     const { email, confirmEmail, password, confirmPassword } = credentials;
     if (email === confirmEmail && password === confirmPassword) {
       signUp(credentials.email, credentials.username, credentials.password);
-      const res = await authApi.post("/ping");
-      console.log(res);
     } else {
       setWarn(true);
     }

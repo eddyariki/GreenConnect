@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import useAuth from "../../../context/user/useAuth";
+import { authApi } from "../../../apis/config";
+import useAuth, { User } from "../../../context/user/useAuth";
 import {
   Button,
   Container,
@@ -23,9 +24,9 @@ interface ISignUpCredentials {
 export default function SignedUp() {
   const history = useHistory();
   const { user, loading, error, login, signUp, logout } = useAuth();
+  const [name, setName] = useState("");
 
   const handleSubmit = async (e: any) => {
-    console.log("reset function");
     history.push("/");
   };
   return (
@@ -39,7 +40,7 @@ export default function SignedUp() {
               <ReturnButton>back</ReturnButton>
             </ReturnContainer>
             <ContentContainer>
-              <ContentP4>Welcome! </ContentP4>
+              <ContentP4>Welcome, {user?.username}! </ContentP4>
               <ContentP3>Your account has been successfully created</ContentP3>
             </ContentContainer>
 

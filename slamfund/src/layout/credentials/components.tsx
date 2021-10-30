@@ -22,6 +22,7 @@ export const ReturnContainer = styled.div`
 export const Return = styled.div`
   height: 24px;
   width: 24px;
+  color: var(--font-color-blue);
 `;
 
 export const ReturnButton = ({ children }: { children: React.ReactNode }) => {
