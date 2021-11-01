@@ -6,6 +6,7 @@ const JWT = require("jsonwebtoken");
 const cors = require("cors");
 const port = 4040;
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: ["http://192.168.11.13:3000", "http://localhost:3000"],
@@ -83,6 +84,7 @@ app.post("/users/login", async (req, res) => {
   });
   for (let i = 0; i < users.length; i++) {
     const usersdb = users[i];
+    console.log(usersdb, data)
     if (usersdb.email === data.email && usersdb.password === data.password) {
       return res.json({
         userId: usersdb.userId,
@@ -140,7 +142,7 @@ app.post("/users/signup", async (req, res) => {
 app.get("/users/user", (req, res) => {
   console.log("user", req.params);
   const u = users[users.length - 1];
-  res.json({
+  return res.json({
     username: u.username,
     firstName: u.firstName,
     lastName: u.lastName,
@@ -157,6 +159,159 @@ app.post("/users/ping", (req, res) => {
   console.log("COOKIES", req.cookies);
   res.json({ msg: "pong" });
 });
+const teams = [
+  {
+      teamId: 0,
+      teamName:"Lakers",
+    },
+    {
+      teamId: 1,
+      teamName:"Warriors"
+    },
+    {
+      teamId: 2,
+      teamName:"Bulls"
+    },
+    {
+      teamId: 3,
+      teamName:"Hornets"
+    },
+    {
+      teamId: 4,
+      teamName:"Raptors"
+    },
+
+]
+const bets = [
+  {
+    betId: 0,
+    game:
+      {
+      teamA:teams[0],
+      teamB:teams[1],
+      score:[210,100],
+      }
+    ,
+    bet: {
+      winner: "teamA",
+      spread: 4.5,
+      ou: "over"
+    }
+  },
+  {
+    betId: 1,
+    game:
+      {
+      teamA:teams[1],
+      teamB:teams[2],
+      score:[180,90],
+      }
+    ,
+    bet: {
+      winner: "teamB",
+      spread: 4,
+      ou: "under"
+    }
+  },
+  {
+    betId: 2,
+    game:
+      {
+      teamA:teams[2],
+      teamB:teams[0],
+      score:[190,120],
+      }
+    ,
+    bet: {
+      winner: "teamA",
+      spread: 3.2,
+      ou: "over"
+    }
+  },
+  {
+    betId: 3,
+    game:
+      {
+      teamA:teams[2],
+      teamB:teams[3],
+      score:[124,120],
+      }
+    ,
+    bet: {
+      winner: "teamB",
+      spread: 2.5,
+      ou: "under"
+    }
+  },
+  {
+    betId: 4,
+    game:
+      {
+      teamA:teams[4],
+      teamB:teams[0],
+      score:[220,290],
+      }
+    ,
+    bet: {
+      winner: "teamA",
+      spread: 4,
+      ou: "over"
+    }
+  },
+  {
+    betId: 5,
+    game:
+      {
+      teamA:teams[2],
+      teamB:teams[4],
+      score:[110,80],
+      }
+    ,
+    bet: {
+      winner: "teamB",
+      spread: 1.2,
+      ou: "over"
+    }
+  },
+  {
+    betId: 6,
+    game:
+      {
+      teamA:teams[3],
+      teamB:teams[1],
+      score:[90,50],
+      }
+    ,
+    bet: {
+      winner: "teamA",
+      spread: 1,
+      ou: "under"
+    }
+  },
+  {
+    betId: 7,
+    game:
+      {
+      teamA:teams[2],
+      teamB:teams[4],
+      score:[130,140],
+      }
+    ,
+    bet: {
+      winner: "teamB",
+      spread: 3.3,
+      ou: "over"
+    }
+  },
+]
+
+app.get("/api/bets", (req, res)=>{
+  console.log("GET bets");
+  return res.json({
+    bets: bets
+  })
+})
+
 
 let server = app.listen(port, function () {
   console.log("server listening on port 4040");

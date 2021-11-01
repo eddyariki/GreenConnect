@@ -1,6 +1,8 @@
 import styled, { css, keyframes } from "styled-components";
 import React from "react";
 import { useHistory } from "react-router";
+
+
 export const Container = styled.div`
   height: max-content;
   display: grid;
@@ -10,6 +12,16 @@ export const Container = styled.div`
   grid-row-gap: var(--padding-p4);
   padding-top: var(--padding-p4);
   margin-bottom: var(--padding-p4);
+
+  @media (min-width: 768px) {
+    min-width: 250px;
+    max-width: 700px;
+  }
+  
+  @media (min-width: 1024px) {
+    min-width: 250px;
+    max-width: 900px;
+  }
 `;
 
 export const ReturnContainer = styled.div`
@@ -23,6 +35,9 @@ export const Return = styled.div`
   height: 24px;
   width: 24px;
   color: var(--font-color-blue);
+  &:hover{
+    cursor:pointer;
+  }
 `;
 
 export const ReturnButton = ({ children }: { children: React.ReactNode }) => {
@@ -83,11 +98,33 @@ export const ToggleButtonCircle = styled.div<ToggleProps>`
   opacity: ${(props) => (props?.active ? "100%" : "50%")};
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+@media (min-width: 768px) {
+  display:grid;
+  justify-items: center;
+}
+
+@media (min-width: 1024px) {
+  display:grid;
+  justify-items: center;
+}
+`;
 
 export const InputContainer = styled.div`
   grid-column: 1 / end;
   align-self: end;
+
+  @media (min-width: 768px) {
+    min-width: 40vw;
+    max-width: 500px;
+    display:grid;
+  }
+  
+  @media (min-width: 1024px) {
+    min-width: 40vw;
+    max-width: 500px;
+    display:grid;
+  }
 `;
 export const Label = styled.label`
   color: var(--font-color-lighter);
@@ -116,7 +153,8 @@ export const Input = styled.input`
 type ButtonProps = {
   action?: boolean;
 };
-export const Button = styled.div<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
+  width: 100%;
   align-self: center;
   border: none;
   font-size: var(--font-size-p3);
@@ -130,6 +168,18 @@ export const Button = styled.div<ButtonProps>`
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    min-width: 150px
+    max-width: 200px;
+    justify-self:center;
+  }
+  
+  @media (min-width: 1024px) {
+    min-width: 250px;
+    max-width: 400px;
+    justify-self:center;
   }
 `;
 

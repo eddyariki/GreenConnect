@@ -8,8 +8,8 @@ import {
   ContentP4Light,
   ReturnButton,
   ReturnContainer,
-} from "../../layout/credentials/components";
-import { CardBorder, Margin } from "../../layout/Layout";
+} from "../../components/credentials/components";
+import { CardBorder, Margin } from "../../components/Layout";
 
 export default function Modeler() {
   const location = useLocation();

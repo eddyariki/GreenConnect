@@ -7,7 +7,6 @@ import {
   Button,
   Container,
   ContentContainer,
-  ContentP3Light,
   ContentP4,
   Form,
   Input,
@@ -17,9 +16,9 @@ import {
   ReturnContainer,
   ErrorMessage,
   ContentP3,
-} from "../../../layout/credentials/components";
-import { Margin } from "../../../layout/Layout";
-import { Loading } from "../../../layout/loading/Loading";
+} from "../../../components/credentials/components";
+import { Margin } from "../../../components/Layout";
+import { Loading } from "../../../components/loading/Loading";
 
 interface ISignUpCredentials {
   email: string;

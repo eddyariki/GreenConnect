@@ -95,6 +95,7 @@ const Container = styled.div`
   width: 100vw;
   margin: 0 0 var(--padding-p2) 0;
   display: grid;
+  z-index: 3000;
 `;
 const SubContainer = styled.div`
   display: grid;
@@ -115,6 +116,14 @@ const Logo = styled.div`
   height: var(--padding-p7);
   align-items: center;
   max-width: 35vw;
+
+  @media (min-width: 768px) {
+    max-width:150px;
+  }
+  
+  @media (min-width: 1024px) {
+    max-width:200px;
+  }
 `;
 
 // const LogoImage = styled.img`
@@ -171,7 +180,7 @@ const DropDownMenuContainer = styled.div`
   width: 100vw;
   display: grid;
   align-items: center;
-  z-index: 30000;
+  z-index: 3000;
 `;
 
 const LinkContainer = styled.div`
@@ -182,5 +191,8 @@ const LinkContainer = styled.div`
 const CustomLink = styled.div`
   color: var(--font-color-white);
   font-size: var(--font-size-p4);
-  font-weight: bold;
+  font-weight: bold; 
+  &:hover{
+    cursor:pointer;
+  }
 `;

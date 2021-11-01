@@ -7,8 +7,8 @@ import {
   ContentP3Light,
   ContentP4,
   ContentP4Light,
-} from "../../layout/credentials/components";
-import { CardBorder, Margin } from "../../layout/Layout";
+} from "../../components/credentials/components";
+import { CardBorder, Margin } from "../../components/Layout";
 
 export default function Portfolio() {
   const [netVal, setNetVal] = useState(10000);

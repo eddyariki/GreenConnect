@@ -16,13 +16,23 @@ export type User = {
   email: string;
   accessToken: string;
 };
-
+interface IUserInfo {
+  username: string;
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  email: string;
+  postalCode: string;
+  country: string;
+  address: string;
+}
 interface IAuthContext {
   user?: User;
   loading: boolean;
   error?: any;
   login: (email: string, password: string) => void;
   signUp: (email: string, username: string, password: string) => void;
+  update: (data:IUserInfo) => void;
   logout: () => void;
   testTokens: () => void;
 }
@@ -55,6 +65,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       const user = await userApi.login({ email, password });
+      authApi.defaults.headers = {
+        "x-access-token": user.accessToken,
+      };
+
+      if(user.userId !== null && user.userId !== undefined){
+        setUser(user);
+      }
+      history.push("/");
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function update(data:{username: string,
+    firstName: string,
+    lastName: string,
+    birthday: string,
+    email: string,
+    postalCode: string,
+    country: string,
+    address: string}) {
+    setLoading(true);
+    try {
+      const user = await userApi.update(data);
       console.log(user);
       authApi.defaults.headers = {
         "x-access-token": user.accessToken,
@@ -102,6 +138,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       error,
       login,
       signUp,
+      update,
       logout,
       testTokens,
     }),

@@ -1,8 +1,8 @@
 import React from "react";
-import { CardBorder, Margin, Spacer } from "../../layout/Layout";
+import { CardBorder, Margin, Spacer } from "../../components/Layout";
 import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
-import { ContentP4 } from "../../layout/credentials/components";
+import { ContentP4 } from "../../components/credentials/components";
 import BarChart from "./BarChart";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
@@ -10,7 +10,7 @@ import PieChart from "./PieChart";
 export default function Earnings() {
   return (
     <Container>
-      <CardBorder>
+      <CardBorder border={true}>
         <Margin>
           <ChartContainer>
             <Spacer />
@@ -46,7 +46,7 @@ export default function Earnings() {
         </Margin>
       </CardBorder>
 
-      <CardBorder>
+      <CardBorder border={true}>
         <Margin>
           <ChartContainer>
             <Spacer />
@@ -61,7 +61,7 @@ export default function Earnings() {
         </Margin>
       </CardBorder>
 
-      <CardBorder>
+      <CardBorder border={true}>
         <Margin>
           <ChartContainer>
             <Spacer />

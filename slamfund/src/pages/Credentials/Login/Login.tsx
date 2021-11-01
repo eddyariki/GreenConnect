@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import useAuth from "../../../context/user/useAuth";
 import { authApi } from "../../../apis/config";
-import { Margin } from "../../../layout/Layout";
-import { Loading } from "../../../layout/loading/Loading";
+import { Margin } from "../../../components/Layout";
+import { Loading } from "../../../components/loading/Loading";
 import {
   Button,
   Container,
   ContentContainer,
   ContentP3,
-  ContentP3Light,
   ContentP4,
   Form,
   Input,
@@ -21,7 +20,7 @@ import {
   ToggleButtonBackground,
   ToggleButtonCircle,
   Trouble,
-} from "../../../layout/credentials/components";
+} from "../../../components/credentials/components";
 import { useHistory } from "react-router";
 
 interface ICredentials {
@@ -110,7 +109,8 @@ export default function Login() {
             </InputContainer>
             <InputContainer>
               <Button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   history.push("/signup");
                 }}
                 action={false}
@@ -120,7 +120,8 @@ export default function Login() {
             </InputContainer>
             <InputContainer>
               <Trouble
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   history.push("/resetform");
                 }}
               >

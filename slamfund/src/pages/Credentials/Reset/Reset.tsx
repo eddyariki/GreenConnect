@@ -6,7 +6,6 @@ import {
   Button,
   Container,
   ContentContainer,
-  ContentP3Light,
   ContentP4,
   Form,
   Input,
@@ -16,9 +15,9 @@ import {
   ReturnContainer,
   ErrorMessage,
   ContentP3,
-} from "../../../layout/credentials/components";
-import { Margin } from "../../../layout/Layout";
-import { Loading } from "../../../layout/loading/Loading";
+} from "../../../components/credentials/components";
+import { Margin } from "../../../components/Layout";
+import { Loading } from "../../../components/loading/Loading";
 
 interface ISignUpCredentials {
   password: string;
@@ -31,7 +30,6 @@ export default function Reset() {
     confirmPassword: "",
   });
   const { user, loading, error, login, signUp, logout } = useAuth();
-  const history = useHistory();
   const [warn, setWarn] = useState<boolean>(false);
   // const [warned, setWarned] = useState<number>(0);
   const handleInput = (e: any) => {

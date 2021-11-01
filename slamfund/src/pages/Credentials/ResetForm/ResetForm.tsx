@@ -14,9 +14,9 @@ import {
   Label,
   ReturnButton,
   ReturnContainer,
-} from "../../../layout/credentials/components";
-import { Margin } from "../../../layout/Layout";
-import { Loading } from "../../../layout/loading/Loading";
+} from "../../../components/credentials/components";
+import { Margin } from "../../../components/Layout";
+import { Loading } from "../../../components/loading/Loading";
 
 interface ISignUpCredentials {
   email: string;

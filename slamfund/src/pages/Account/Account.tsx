@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { authApi } from "../../apis/config";
 import useAuth from "../../context/user/useAuth";
-import { CardBorder, Margin } from "../../layout/Layout";
+import { CardBorder, Margin } from "../../components/Layout";
 interface IUserInfo {
   username: string;
   firstName: string;
@@ -43,13 +43,13 @@ export default function Account() {
   }, []);
   return (
     <Container>
-      <CardBorder>
+      <CardBorder border={true}>
         <Margin>
           <Card>
             <TitleContainer>
               <Icon></Icon>
               <Title>Basic Information</Title>
-              <Edit>edit</Edit>
+              <Edit onClick={()=>history.push("/account/edit")}>edit</Edit>
             </TitleContainer>
             <InfoContainerCard title={"username"} text={userInfo.username} />
             <InfoContainerCard
@@ -70,7 +70,7 @@ export default function Account() {
           </Card>
         </Margin>
       </CardBorder>
-      <CardBorder>
+      <CardBorder border={true}>
         <Margin>
           <Card>
             <TitleContainer>
@@ -136,6 +136,9 @@ const Edit = styled.div`
   text-decoration: underline;
   grid-column: 2/3;
   justify-self: end;
+  &:hover{
+    cursor:pointer;
+  }
 `;
 const InfoContainer = styled.div`
   display: grid;

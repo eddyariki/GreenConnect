@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { Button, ContentP3Bold } from "../../layout/credentials/components";
-import { CardBorder, Margin } from "../../layout/Layout";
+import { Button, ContentP3Bold } from "../../components/credentials/components";
+import { CardBorder, Margin } from "../../components/Layout";
 import { Coder } from "./Coders";
 
 interface IAllocationCardProps {
@@ -12,6 +12,19 @@ interface IAllocationCardProps {
 }
 
 const AllocationCard: React.FC<IAllocationCardProps> = (props) => {
+
+  const [allocations, setAllocations] = useState<string[]>([]);
+
+  const handleChange = (e:any, idx: number) =>{
+    const allocationsTemp = allocations;
+    allocationsTemp[idx] = e.target.value;
+    setAllocations(allocationsTemp);
+  }
+
+  const removeCard = (id: number) => {
+    const a = props.selectedCoders.filter(c=>c !== id)
+    props.setSelectedCoders(a);
+  }
   return (
     <Container>
       <MarginTop>
@@ -30,22 +43,23 @@ const AllocationCard: React.FC<IAllocationCardProps> = (props) => {
             </CloseButton>
           </InfoContainer>
           <CardsContainer>
-            {props.coders.map((c) => {
+            {props.coders.map((c,idx) => {
               if (props.selectedCoders.includes(c.userId)) {
                 return (
-                  <CardBorder>
+                  <CardBorder key={idx} border={true}>
                     <Margin>
                       <MarginTop>
                         <CardContainer>
                           <CardInfo>
-                            <Remove>-</Remove>
+                            <Remove onClick={()=> removeCard(c.userId)}>-</Remove>
                             <ContentP3Bold>{c.name}</ContentP3Bold>
                             <Form>
                               <Input
                                 type="text"
-                                name="allocation"
+                                name={c.userId.toString()}
                                 placeholder="0"
-                                value={"$10,000"}
+                                value={allocations[idx]}
+                                onChange={(e) => handleChange(e, idx)}
                               />
                             </Form>
                           </CardInfo>
@@ -96,16 +110,26 @@ to{
 }
 `;
 const Container = styled.div`
-  position: fixed;
+  position: sticky;
   bottom: 0;
   top: 20%;
   background-color: var(--color-white);
-  border-top-left-radius: var(--padding-p6);
-  border-top-right-radius: var(--padding-p6);
+  border-radius: var(--padding-p6);
   width: 100vw;
   box-shadow: var(--shadow-s2);
-  z-index: 8000;
+  z-index: 200 !important;
   animation: ${Rise} 0.2s;
+  justify-self:end;
+  overflow-y:scroll;
+  @media (min-width: 768px) {
+    max-width:450px;
+    padding-top: var(--padding-p4);
+   }
+   
+   @media (min-width: 1024px) {
+     max-width:650px;
+     padding-top: var(--padding-p4);
+   }
 `;
 
 const PopupContainer = styled.div`
@@ -126,6 +150,14 @@ const CloseButton = styled.div`
   position: absolute;
   right: 0;
   color: var(--font-color-blue);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-p4);
+   }
+   
+   @media (min-width: 1024px) {
+    font-size: var(--font-size-p4);
+   }
 `;
 const MarginTop = styled.div`
   padding: var(--padding-p3) 0 var(--padding-p3) 0;
@@ -136,6 +168,14 @@ const MarginTop = styled.div`
 const CardsContainer = styled.div`
   display: grid;
   grid-row-gap: var(--padding-p2);
+
+  @media (min-width: 768px) {
+    overflow-y: hidden;
+   }
+   
+   @media (min-width: 1024px) {
+    overflow-y: hidden;
+   }
 `;
 const CardContainer = styled.div`
   grid-template-rows: 1fr 1fr;

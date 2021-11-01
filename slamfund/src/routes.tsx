@@ -10,6 +10,7 @@ import Coders from "./pages/Coders/Coders";
 import Modelers from "./pages/Coders/Modeler";
 import Modeler from "./pages/Coders/Modeler";
 import Portfolio from "./pages/Portfolio/Portfolio";
+import AccountEdit from "./pages/Account/AccountEdit";
 
 export const routes = [
   {
@@ -45,6 +46,11 @@ export const routes = [
   {
     component: Account,
     path: "/account",
+    protected: true,
+  },
+  {
+    component: AccountEdit,
+    path: "/account/edit",
     protected: true,
   },
   {

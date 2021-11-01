@@ -24,6 +24,20 @@ export const signUp = async (params: {
   return res.data;
 };
 
+export const update = async (params: {
+  username: string;
+    firstName: string;
+    lastName: string;
+    birthday: string;
+    email: string;
+    postalCode: string;
+    country: string;
+    address: string;
+}): Promise<User> => {
+  const res: AxiosResponse<User> = await authApi.put("/update", params);
+  return res.data;
+};
+
 export const testToken = async (): Promise<User> => {
   const res: AxiosResponse<User> = await authApi.post("/tokens");
   return res.data;

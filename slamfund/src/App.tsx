@@ -4,7 +4,7 @@ import GlobalCSS from "./global.css";
 import GlobalVariables from "./variables.css";
 import { AuthProvider } from "./context/user/useAuth";
 import WithAxios from "./context/WithAxios";
-import Header from "./layout/Header";
+import Header from "./components/Header";
 import WithRedirect from "./context/WithRedirect";
 
 export default function App() {

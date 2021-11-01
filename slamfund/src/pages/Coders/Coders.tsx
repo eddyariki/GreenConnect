@@ -6,8 +6,8 @@ import {
   ContentP3,
   ContentP3Bold,
   ContentP4,
-} from "../../layout/credentials/components";
-import { CardBorder, Margin } from "../../layout/Layout";
+} from "../../components/credentials/components";
+import { CardBorder, Margin } from "../../components/Layout";
 import { DropDown, Option } from "../Earnings/Earnings";
 import AllocationCard from "./AllocationCard";
 import { coders } from "./mockup";
@@ -117,7 +117,7 @@ export default function Coders() {
         <Margin>Meet the Modelers</Margin>
       </ContentP4>
 
-      <CardBorder>
+      <CardBorder stretch={true} style={{height:"100vw"}}>
         <Margin>
           <MarginTop>
             <ContentP3>Filter coders</ContentP3>
@@ -146,7 +146,7 @@ export default function Coders() {
               <FilterContainer>
                 {filters.map((c, idx) => {
                   return (
-                    <Filters>
+                    <Filters key={idx}>
                       {c.above ? ">" : "<"}
                       {c.value}% {c.label}{" "}
                       <CancelButton onClick={(e) => handleDelete(idx, e)}>
@@ -167,16 +167,18 @@ export default function Coders() {
           </Margin>
 
           <CoderListContainer>
-            {coders.map((c) => {
+            {coders.map((c,idx) => {
               if (selectedCoders.includes(c.userId)) {
                 return (
                   <CoderCard
+                  key={idx}
                     props={{ ...c, handleCardSelect, selected: true }}
                   />
                 );
               }
               return (
                 <CoderCard
+                key={idx}
                   props={{ ...c, handleCardSelect, selected: false }}
                 />
               );
@@ -184,8 +186,8 @@ export default function Coders() {
           </CoderListContainer>
         </MarginTop>
       </CardBorder>
-      {selectedCoders.length > 0 && (
-        <AllocationButtonContainer>
+      {selectedCoders.length > 0 && !showMenu && (
+        <AllocationButtonContainer >
           <Info>{selectedCoders.length} selected</Info>
           <Button
             action={true}
@@ -230,7 +232,7 @@ const CoderCard: React.FC<CoderCardType> = ({ props }) => {
     history.push(`/modeler?userId=${userId}`);
   };
   return (
-    <CardBorder
+    <CardBorder border={true}
       style={
         props.selected ? { backgroundColor: "var(--color-blue-light)" } : {}
       }
@@ -292,6 +294,15 @@ const CardContainer = styled.div`
 const CoderListContainer = styled.div`
   display: grid;
   grid-row-gap: var(--padding-p2);
+  overflow-y: scroll;
+  justify-self:center;
+  @media (min-width: 768px) {
+    width:fit-content;
+  }
+  
+  @media (min-width: 1024px) {
+    width:fit-content;
+  }
 `;
 
 const Name = styled.div`
@@ -319,14 +330,14 @@ const Stats = styled.div`
 const Label = styled.div`
   justify-self: start;
   color: var(--font-color-light);
-  font-size: var(--font-size-p2);
+  font-size: var(--font-size-p3);
 `;
 
 const Stat = styled.div`
   justify-self: end;
   color: var(--font-color);
   font-weight: bold;
-  font-size: var(--font-size-p2);
+  font-size: var(--font-size-p3);
 `;
 
 const VR = styled.div`
@@ -341,7 +352,7 @@ const Link = styled.div`
   align-self: center;
   color: var(--font-color-blue);
   font-weight: bold;
-  z-index: 2923;
+  z-index: 100;
 `;
 
 const InputWrapper = styled.div`
@@ -369,6 +380,14 @@ const Form = styled.form`
   grid-template-rows: 1fr auto;
   row-gap: var(--padding-p2);
   column-gap: var(--padding-p2);
+
+  @media (min-width: 768px) {
+    max-width:250px;
+   }
+   
+   @media (min-width: 1024px) {
+     max-width:350px;
+   }
 `;
 const DropDownWrapper = styled.div`
   display: grid;
@@ -409,7 +428,15 @@ const AllocationButtonContainer = styled.div`
   border-radius: var(--padding-p6);
   background-color: var(--color-white);
   padding: var(--padding-p2);
-  z-index: 200000;
+  z-index: 110;
+
+  @media (min-width: 768px) {
+   max-width:350px;
+  }
+  
+  @media (min-width: 1024px) {
+    max-width:450px;
+  }
 `;
 
 const Info = styled.div``;
