@@ -84,7 +84,7 @@ app.post("/users/login", async (req, res) => {
   });
   for (let i = 0; i < users.length; i++) {
     const usersdb = users[i];
-    console.log(usersdb, data)
+    console.log(usersdb, data);
     if (usersdb.email === data.email && usersdb.password === data.password) {
       return res.json({
         userId: usersdb.userId,
@@ -153,6 +153,7 @@ app.get("/users/user", (req, res) => {
     address: u.address,
   });
 });
+
 app.post("/users/ping", (req, res) => {
   console.log("BODY", req.body);
   console.log("HEADERS", req.headers);
@@ -161,157 +162,244 @@ app.post("/users/ping", (req, res) => {
 });
 const teams = [
   {
-      teamId: 0,
-      teamName:"Lakers",
-    },
-    {
-      teamId: 1,
-      teamName:"Warriors"
-    },
-    {
-      teamId: 2,
-      teamName:"Bulls"
-    },
-    {
-      teamId: 3,
-      teamName:"Hornets"
-    },
-    {
-      teamId: 4,
-      teamName:"Raptors"
-    },
-
-]
+    teamId: 0,
+    teamName: "Lakers",
+  },
+  {
+    teamId: 1,
+    teamName: "Warriors",
+  },
+  {
+    teamId: 2,
+    teamName: "Bulls",
+  },
+  {
+    teamId: 3,
+    teamName: "Hornets",
+  },
+  {
+    teamId: 4,
+    teamName: "Raptors",
+  },
+];
 const bets = [
   {
     betId: 0,
-    game:
-      {
-      teamA:teams[0],
-      teamB:teams[1],
-      score:[210,100],
-      }
-    ,
+    game: {
+      teamA: teams[0],
+      teamB: teams[1],
+      score: [210, 100],
+    },
     bet: {
       winner: "teamA",
       spread: 4.5,
-      ou: "over"
-    }
+      ou: "over",
+    },
   },
   {
     betId: 1,
-    game:
-      {
-      teamA:teams[1],
-      teamB:teams[2],
-      score:[180,90],
-      }
-    ,
+    game: {
+      teamA: teams[1],
+      teamB: teams[2],
+      score: [180, 90],
+    },
     bet: {
       winner: "teamB",
       spread: 4,
-      ou: "under"
-    }
+      ou: "under",
+    },
   },
   {
     betId: 2,
-    game:
-      {
-      teamA:teams[2],
-      teamB:teams[0],
-      score:[190,120],
-      }
-    ,
+    game: {
+      teamA: teams[2],
+      teamB: teams[0],
+      score: [190, 120],
+    },
     bet: {
       winner: "teamA",
       spread: 3.2,
-      ou: "over"
-    }
+      ou: "over",
+    },
   },
   {
     betId: 3,
-    game:
-      {
-      teamA:teams[2],
-      teamB:teams[3],
-      score:[124,120],
-      }
-    ,
+    game: {
+      teamA: teams[2],
+      teamB: teams[3],
+      score: [124, 120],
+    },
     bet: {
       winner: "teamB",
       spread: 2.5,
-      ou: "under"
-    }
+      ou: "under",
+    },
   },
   {
     betId: 4,
-    game:
-      {
-      teamA:teams[4],
-      teamB:teams[0],
-      score:[220,290],
-      }
-    ,
+    game: {
+      teamA: teams[4],
+      teamB: teams[0],
+      score: [220, 290],
+    },
     bet: {
       winner: "teamA",
       spread: 4,
-      ou: "over"
-    }
+      ou: "over",
+    },
   },
   {
     betId: 5,
-    game:
-      {
-      teamA:teams[2],
-      teamB:teams[4],
-      score:[110,80],
-      }
-    ,
+    game: {
+      teamA: teams[2],
+      teamB: teams[4],
+      score: [110, 80],
+    },
     bet: {
       winner: "teamB",
       spread: 1.2,
-      ou: "over"
-    }
+      ou: "over",
+    },
   },
   {
     betId: 6,
-    game:
-      {
-      teamA:teams[3],
-      teamB:teams[1],
-      score:[90,50],
-      }
-    ,
+    game: {
+      teamA: teams[3],
+      teamB: teams[1],
+      score: [90, 50],
+    },
     bet: {
       winner: "teamA",
       spread: 1,
-      ou: "under"
-    }
+      ou: "under",
+    },
   },
   {
     betId: 7,
-    game:
-      {
-      teamA:teams[2],
-      teamB:teams[4],
-      score:[130,140],
-      }
-    ,
+    game: {
+      teamA: teams[2],
+      teamB: teams[4],
+      score: [130, 140],
+    },
     bet: {
       winner: "teamB",
       spread: 3.3,
-      ou: "over"
-    }
+      ou: "over",
+    },
   },
-]
+];
 
-app.get("/api/bets", (req, res)=>{
+app.get("/api/bets", (req, res) => {
   console.log("GET bets");
   return res.json({
-    bets: bets
-  })
-})
+    bets: bets,
+  });
+});
+const modelers = [
+  {
+    name: "Modeler A",
+    acc: 10.2,
+    users: 233,
+    fees: 1.22,
+    age: 333,
+    userId: 0,
+  },
+  {
+    name: "Modeler B",
+    acc: 50.5,
+    users: 2133,
+    fees: 1.22,
+    age: 343,
+    userId: 1,
+  },
+  {
+    name: "Modeler C",
+    acc: 66.63,
+    users: 1233,
+    fees: 8.2,
+    age: 223,
+    userId: 2,
+  },
+  {
+    name: "Modeler D",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 3,
+  },
+  {
+    name: "Modeler E",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 4,
+  },
+  {
+    name: "Modeler F",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 5,
+  },
+  {
+    name: "Modeler G",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 6,
+  },
+  {
+    name: "Modeler H",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 7,
+  },
+  {
+    name: "Modeler I",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 8,
+  },
+  {
+    name: "Modeler J",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 9,
+  },
+  {
+    name: "Modeler K",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 10,
+  },
+  {
+    name: "Modeler L",
+    acc: 78.0,
+    users: 2233,
+    fees: 1.02,
+    age: 33,
+    userId: 11,
+  },
+];
 
+app.get("/api/modelers", (req, res) => {
+  console.log("GET modelers");
+  return res.json({
+    modelers: modelers,
+  });
+});
 
 let server = app.listen(port, function () {
   console.log("server listening on port 4040");

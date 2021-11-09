@@ -118,11 +118,11 @@ const Logo = styled.div`
   max-width: 35vw;
 
   @media (min-width: 768px) {
-    max-width:150px;
+    max-width: 150px;
   }
-  
+
   @media (min-width: 1024px) {
-    max-width:200px;
+    max-width: 200px;
   }
 `;
 
@@ -191,8 +191,8 @@ const LinkContainer = styled.div`
 const CustomLink = styled.div`
   color: var(--font-color-white);
   font-size: var(--font-size-p4);
-  font-weight: bold; 
-  &:hover{
-    cursor:pointer;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
   }
 `;

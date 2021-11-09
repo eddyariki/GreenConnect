@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { AxiosResponse } from "axios";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { api, authApi } from "../../apis/config";
 import {
   Button,
   ContentP3,
@@ -10,7 +12,6 @@ import {
 import { CardBorder, Margin } from "../../components/Layout";
 import { DropDown, Option } from "../Earnings/Earnings";
 import AllocationCard from "./AllocationCard";
-import { coders } from "./mockup";
 
 export type Coder = {
   name: string;
@@ -20,7 +21,9 @@ export type Coder = {
   age: number;
   userId: number;
 };
-
+interface IModelers {
+  modelers: Coder[];
+}
 type Filter = {
   label: string;
   above: boolean;
@@ -36,6 +39,16 @@ export default function Coders() {
   });
   const [selectedCoders, setSelectedCoders] = useState<number[]>([]);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [coders, setCoders] = useState<Coder[]>([{} as Coder]);
+
+  useEffect(() => {
+    const getCoders = async () => {
+      const res: AxiosResponse<IModelers> = await api.get("/modelers", {});
+      console.log(res.data);
+      setCoders(res.data.modelers);
+    };
+    getCoders();
+  }, []);
   const handleCardSelect = (userId: number) => {
     if (selectedCoders.includes(userId)) {
       if (selectedCoders.length === 1) {
@@ -55,6 +68,8 @@ export default function Coders() {
     });
   };
 
+  // Filtering will depend on the backend
+  // When querying database, filters the coders for you
   const handleFilterAdd = (e: any) => {
     e.preventDefault();
     setFilters((prevState) => {
@@ -117,7 +132,7 @@ export default function Coders() {
         <Margin>Meet the Modelers</Margin>
       </ContentP4>
 
-      <CardBorder stretch={true} style={{height:"100vw"}}>
+      <CardBorder stretch={true} style={{ height: "100vw" }}>
         <Margin>
           <MarginTop>
             <ContentP3>Filter coders</ContentP3>
@@ -167,27 +182,28 @@ export default function Coders() {
           </Margin>
 
           <CoderListContainer>
-            {coders.map((c,idx) => {
-              if (selectedCoders.includes(c.userId)) {
+            {coders &&
+              coders.map((c, idx) => {
+                if (selectedCoders.includes(c.userId)) {
+                  return (
+                    <CoderCard
+                      key={idx}
+                      props={{ ...c, handleCardSelect, selected: true }}
+                    />
+                  );
+                }
                 return (
                   <CoderCard
-                  key={idx}
-                    props={{ ...c, handleCardSelect, selected: true }}
+                    key={idx}
+                    props={{ ...c, handleCardSelect, selected: false }}
                   />
                 );
-              }
-              return (
-                <CoderCard
-                key={idx}
-                  props={{ ...c, handleCardSelect, selected: false }}
-                />
-              );
-            })}
+              })}
           </CoderListContainer>
         </MarginTop>
       </CardBorder>
       {selectedCoders.length > 0 && !showMenu && (
-        <AllocationButtonContainer >
+        <AllocationButtonContainer>
           <Info>{selectedCoders.length} selected</Info>
           <Button
             action={true}
@@ -226,15 +242,21 @@ interface ICoderCard {
 type CoderCardType = {
   props: ICoderCard;
 };
+
 const CoderCard: React.FC<CoderCardType> = ({ props }) => {
   const history = useHistory();
   const handleRedirect = (userId: number) => {
     history.push(`/modeler?userId=${userId}`);
   };
   return (
-    <CardBorder border={true}
+    <ClickableCardBorder
+      border={true}
       style={
-        props.selected ? { backgroundColor: "var(--color-blue-light)" } : {}
+        props.selected
+          ? {
+              backgroundColor: "var(--color-blue-light)",
+            }
+          : {}
       }
     >
       <Margin
@@ -262,9 +284,14 @@ const CoderCard: React.FC<CoderCardType> = ({ props }) => {
           <Link onClick={() => handleRedirect(props.userId)}>view profile</Link>
         </CardContainer>
       </Margin>
-    </CardBorder>
+    </ClickableCardBorder>
   );
 };
+const ClickableCardBorder = styled(CardBorder)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -295,13 +322,13 @@ const CoderListContainer = styled.div`
   display: grid;
   grid-row-gap: var(--padding-p2);
   overflow-y: scroll;
-  justify-self:center;
+  justify-self: center;
   @media (min-width: 768px) {
-    width:fit-content;
+    width: fit-content;
   }
-  
+
   @media (min-width: 1024px) {
-    width:fit-content;
+    width: fit-content;
   }
 `;
 
@@ -382,12 +409,12 @@ const Form = styled.form`
   column-gap: var(--padding-p2);
 
   @media (min-width: 768px) {
-    max-width:250px;
-   }
-   
-   @media (min-width: 1024px) {
-     max-width:350px;
-   }
+    max-width: 250px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 350px;
+  }
 `;
 const DropDownWrapper = styled.div`
   display: grid;
@@ -431,11 +458,11 @@ const AllocationButtonContainer = styled.div`
   z-index: 110;
 
   @media (min-width: 768px) {
-   max-width:350px;
+    max-width: 350px;
   }
-  
+
   @media (min-width: 1024px) {
-    max-width:450px;
+    max-width: 450px;
   }
 `;
 

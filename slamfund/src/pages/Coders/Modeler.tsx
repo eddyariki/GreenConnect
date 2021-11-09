@@ -21,46 +21,67 @@ export default function Modeler() {
 
   return (
     <Container>
-      <CardBorder>
-        <Margin>
-          <MarginTop>
-            <ReturnContainer>
-              <ReturnButton>back</ReturnButton>
-            </ReturnContainer>
-            <BioContainer>
-              <ContentP4>Modeler A</ContentP4>
-              <InfoContainer>
-                <ContentP3>Year Joined: </ContentP3>
-                <ContentP3Bold>2021</ContentP3Bold>
-              </InfoContainer>
-              <InfoContainer>
-                <ContentP3>Fee: </ContentP3>
-                <ContentP3Bold>2.5%</ContentP3Bold>
-              </InfoContainer>
-              <InfoContainer>
-                <ContentP3>Accuracy: </ContentP3>
-                <ContentP3Bold>70%</ContentP3Bold>
-              </InfoContainer>
-              <Bio>
-                <ContentP4Light>Bio:</ContentP4Light>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  nec ultricies purus. Nulla at ante purus. Mauris feugiat, nunc
-                  eu dictum aliquet, enim nisi interdum ex, et varius justo
-                  purus vitae diam. Mauris eu dolor vel nibh elementum finibus
-                  et posuere ante. Ut pellentesque est vel urna tincidunt, a
-                  vehicula dui vehicula.
-                </Text>
-              </Bio>
-            </BioContainer>
-          </MarginTop>
-        </Margin>
-      </CardBorder>
+      <Margin>
+        <ContentP4>Modeler Info:</ContentP4>
+      </Margin>
+      <CardContainer>
+        <CardBorder stretch={false} border={true}>
+          <Margin>
+            <MarginTop>
+              <ReturnContainer>
+                <ReturnButton>back</ReturnButton>
+              </ReturnContainer>
+              <BioContainer>
+                <ContentP4>Modeler A</ContentP4>
+                <InfoContainer>
+                  <ContentP3>Year Joined: </ContentP3>
+                  <ContentP3Bold>2021</ContentP3Bold>
+                </InfoContainer>
+                <InfoContainer>
+                  <ContentP3>Fee: </ContentP3>
+                  <ContentP3Bold>2.5%</ContentP3Bold>
+                </InfoContainer>
+                <InfoContainer>
+                  <ContentP3>Accuracy: </ContentP3>
+                  <ContentP3Bold>70%</ContentP3Bold>
+                </InfoContainer>
+                <Bio>
+                  <ContentP4Light>Bio:</ContentP4Light>
+                  <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Donec nec ultricies purus. Nulla at ante purus. Mauris
+                    feugiat, nunc eu dictum aliquet, enim nisi interdum ex, et
+                    varius justo purus vitae diam. Mauris eu dolor vel nibh
+                    elementum finibus et posuere ante. Ut pellentesque est vel
+                    urna tincidunt, a vehicula dui vehicula.
+                  </Text>
+                </Bio>
+              </BioContainer>
+            </MarginTop>
+          </Margin>
+        </CardBorder>
+      </CardContainer>
     </Container>
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+`;
+const CardContainer = styled.div`
+  display: grid;
+  @media (min-width: 768px) {
+    max-width: 550px;
+
+    justify-self: center;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 850px;
+
+    justify-self: center;
+  }
+`;
 
 const MarginTop = styled.div`
   padding: var(--padding-p3) 0 var(--padding-p3) 0;

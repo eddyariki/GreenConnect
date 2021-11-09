@@ -22,7 +22,10 @@ export default function Portfolio() {
   };
   return (
     <Container>
-      <CardBorder>
+      <Margin>
+        <ContentP4>Portfolio</ContentP4>
+      </Margin>
+      <CardBorder border={true}>
         <Margin>
           <MarginTop>
             <ContentP4>Portfolio</ContentP4>
@@ -70,6 +73,10 @@ const ActionsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    column-gap: var(--padding-p6);
+  }
 `;
 
 const ActionButton = styled(Button)`

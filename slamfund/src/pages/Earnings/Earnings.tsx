@@ -10,6 +10,9 @@ import PieChart from "./PieChart";
 export default function Earnings() {
   return (
     <Container>
+      <Margin>
+        <ContentP4>Analysis</ContentP4>
+      </Margin>
       <CardBorder border={true}>
         <Margin>
           <ChartContainer>

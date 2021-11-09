@@ -2,7 +2,6 @@ import styled, { css, keyframes } from "styled-components";
 import React from "react";
 import { useHistory } from "react-router";
 
-
 export const Container = styled.div`
   height: max-content;
   display: grid;
@@ -17,7 +16,7 @@ export const Container = styled.div`
     min-width: 250px;
     max-width: 700px;
   }
-  
+
   @media (min-width: 1024px) {
     min-width: 250px;
     max-width: 900px;
@@ -35,8 +34,8 @@ export const Return = styled.div`
   height: 24px;
   width: 24px;
   color: var(--font-color-blue);
-  &:hover{
-    cursor:pointer;
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -99,15 +98,15 @@ export const ToggleButtonCircle = styled.div<ToggleProps>`
 `;
 
 export const Form = styled.form`
-@media (min-width: 768px) {
-  display:grid;
-  justify-items: center;
-}
+  @media (min-width: 768px) {
+    display: grid;
+    justify-items: center;
+  }
 
-@media (min-width: 1024px) {
-  display:grid;
-  justify-items: center;
-}
+  @media (min-width: 1024px) {
+    display: grid;
+    justify-items: center;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -117,13 +116,13 @@ export const InputContainer = styled.div`
   @media (min-width: 768px) {
     min-width: 40vw;
     max-width: 500px;
-    display:grid;
+    display: grid;
   }
-  
+
   @media (min-width: 1024px) {
     min-width: 40vw;
     max-width: 500px;
-    display:grid;
+    display: grid;
   }
 `;
 export const Label = styled.label`

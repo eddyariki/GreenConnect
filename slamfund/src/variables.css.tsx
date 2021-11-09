@@ -43,5 +43,7 @@ export default createGlobalStyle`
         --color-background: #fafdff;
         --color-orange:#ffc72e;
         --shadow-s2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+        --color-canary-yellow: rgb(255,255,141);
     }
 `;

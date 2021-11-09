@@ -5,7 +5,7 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family:'Montserrat', sans-serif;
-        /* background-color: var(--color-background); */
+        // background-color: var(--color-canary-yellow); 
     }
    
 `;

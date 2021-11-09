@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { authApi } from "../../apis/config";
 import useAuth from "../../context/user/useAuth";
 import { CardBorder, Margin } from "../../components/Layout";
+import { CgProfile } from "react-icons/cg";
+import { RiBillLine } from "react-icons/ri";
+import { ContentP4 } from "../../components/credentials/components";
 interface IUserInfo {
   username: string;
   firstName: string;
@@ -15,6 +18,7 @@ interface IUserInfo {
   country: string;
   address: string;
 }
+
 export default function Account() {
   const { user, loading, error, login, signUp, logout } = useAuth();
   const [userInfo, setUserInfo] = useState<IUserInfo>({
@@ -43,13 +47,18 @@ export default function Account() {
   }, []);
   return (
     <Container>
+      <Margin>
+        <ContentP4>Account</ContentP4>
+      </Margin>
       <CardBorder border={true}>
         <Margin>
           <Card>
             <TitleContainer>
-              <Icon></Icon>
+              <Icon>
+                <CgProfile size={50}></CgProfile>
+              </Icon>
               <Title>Basic Information</Title>
-              <Edit onClick={()=>history.push("/account/edit")}>edit</Edit>
+              <Edit onClick={() => history.push("/account/edit")}>edit</Edit>
             </TitleContainer>
             <InfoContainerCard title={"username"} text={userInfo.username} />
             <InfoContainerCard
@@ -74,7 +83,9 @@ export default function Account() {
         <Margin>
           <Card>
             <TitleContainer>
-              <Icon></Icon>
+              <Icon>
+                <RiBillLine size={50}></RiBillLine>
+              </Icon>
               <Title>Billing Address</Title>
               <Edit>edit</Edit>
             </TitleContainer>
@@ -127,7 +138,7 @@ const Title = styled.div`
 const Icon = styled.div`
   height: var(--font-size-p6);
   width: var(--font-size-p6);
-  background-color: black;
+  background-color: transparent;
 `;
 const Edit = styled.div`
   font-size: var(--font-size-p4);
@@ -136,8 +147,8 @@ const Edit = styled.div`
   text-decoration: underline;
   grid-column: 2/3;
   justify-self: end;
-  &:hover{
-    cursor:pointer;
+  &:hover {
+    cursor: pointer;
   }
 `;
 const InfoContainer = styled.div`

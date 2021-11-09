@@ -10,101 +10,106 @@ interface ITeam {
   teamId: number;
   teamName: string;
 }
-interface IBets  {
- betId: number;
- game: {
-  teamA:ITeam;
-  teamB:ITeam;
-  score: number[];
- };
- bet:{
-   winner: string;
-   spread: number;
-   ou: string
- }
+interface IBets {
+  betId: number;
+  game: {
+    teamA: ITeam;
+    teamB: ITeam;
+    score: number[];
+  };
+  bet: {
+    winner: string;
+    spread: number;
+    ou: string;
+  };
 }
 type Bets = {
-  bets:IBets[]
-}
+  bets: IBets[];
+};
 export default function Home() {
   const [bets, setBets] = useState<IBets[]>();
-  useEffect(()=>{
-    const fetchBets = async()=>{
-      const res:AxiosResponse<Bets> = await api.get("/bets");
+  useEffect(() => {
+    const fetchBets = async () => {
+      const res: AxiosResponse<Bets> = await api.get("/bets");
       console.log(res.data.bets);
       setBets(res.data.bets);
-    }
+    };
     fetchBets();
-  }
-  , [])
+  }, []);
 
   const handleClick = async () => {
     const res = await authApi.post("ping");
     console.log(res.data);
   };
-  const imageSwitch = (name:string) =>{
+  const imageSwitch = (name: string) => {
     switch (name) {
       case "Lakers":
-        return mockupImage.Lakers
-        
-        case "Warriors":
-          return mockupImage.Warriors
-          
-          case "Bulls":
-        return mockupImage.Bulls
-        
-        case "Hornets":
-        return mockupImage.Hornets
-        
-        case "Raptors":
-        return mockupImage.Raptors
-        
+        return mockupImage.Lakers;
+
+      case "Warriors":
+        return mockupImage.Warriors;
+
+      case "Bulls":
+        return mockupImage.Bulls;
+
+      case "Hornets":
+        return mockupImage.Hornets;
+
+      case "Raptors":
+        return mockupImage.Raptors;
+
       default:
         break;
     }
-  }
+  };
   return (
     <Container>
       <ContentP4>
         <Margin>Current Bets</Margin>
       </ContentP4>
-      {bets ? bets.map((item, idx) => {
-        return (
-          <CardBorder key={idx} border={true}>
-            <Margin>
-              <MarginTop>
-                <Team row="1/2">
-                  <TeamIcon src={imageSwitch(item.game.teamA.teamName)} />
-                  <TeamName>{item.game.teamA.teamName}</TeamName>
-                  <TeamScore>{item.game.score[0]}</TeamScore>
-                </Team>
-                <Team row="2/3">
-                  <TeamIcon src={imageSwitch(item.game.teamB.teamName)} />
-                  <TeamName>{item.game.teamB.teamName}</TeamName>
-                  <TeamScore>{item.game.score[1]}</TeamScore>
-                </Team>
-                <VR />
-                <Link row="1/2">Box Score</Link>
-                <Link row="2/3">Gamecast</Link>
-                <BetStatsContainer>
-                  <Stats>
-                    <Bet>winner:</Bet>
-                    <Result>{item.bet.winner === "teamA" ? item.game.teamA.teamName : item.game.teamB.teamName}</Result>
-                  </Stats>
-                  <Stats>
-                    <Bet>spread:</Bet>
-                    <Result>{item.bet.spread}</Result>
-                  </Stats>
-                  <Stats>
-                    <Bet>o/u:</Bet>
-                    <Result>{item.bet.ou}</Result>
-                  </Stats>
-                </BetStatsContainer>
-              </MarginTop>
-            </Margin>
-          </CardBorder>
-        );
-      }): null}
+      {bets
+        ? bets.map((item, idx) => {
+            return (
+              <CardBorder key={idx} border={true}>
+                <Margin>
+                  <MarginTop>
+                    <Team row="1/2">
+                      <TeamIcon src={imageSwitch(item.game.teamA.teamName)} />
+                      <TeamName>{item.game.teamA.teamName}</TeamName>
+                      <TeamScore>{item.game.score[0]}</TeamScore>
+                    </Team>
+                    <Team row="2/3">
+                      <TeamIcon src={imageSwitch(item.game.teamB.teamName)} />
+                      <TeamName>{item.game.teamB.teamName}</TeamName>
+                      <TeamScore>{item.game.score[1]}</TeamScore>
+                    </Team>
+                    <VR />
+                    <Link row="1/2">Box Score</Link>
+                    <Link row="2/3">Gamecast</Link>
+                    <BetStatsContainer>
+                      <Stats>
+                        <Bet>winner:</Bet>
+                        <Result>
+                          {item.bet.winner === "teamA"
+                            ? item.game.teamA.teamName
+                            : item.game.teamB.teamName}
+                        </Result>
+                      </Stats>
+                      <Stats>
+                        <Bet>spread:</Bet>
+                        <Result>{item.bet.spread}</Result>
+                      </Stats>
+                      <Stats>
+                        <Bet>o/u:</Bet>
+                        <Result>{item.bet.ou}</Result>
+                      </Stats>
+                    </BetStatsContainer>
+                  </MarginTop>
+                </Margin>
+              </CardBorder>
+            );
+          })
+        : null}
     </Container>
   );
 }
