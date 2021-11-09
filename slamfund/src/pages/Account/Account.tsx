@@ -87,7 +87,7 @@ export default function Account() {
                 <RiBillLine size={50}></RiBillLine>
               </Icon>
               <Title>Billing Address</Title>
-              <Edit>edit</Edit>
+              <Edit onClick={() => history.push("/account/edit")}>edit</Edit>
             </TitleContainer>
             <InfoContainerCard
               title={"name"}
